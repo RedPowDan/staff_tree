@@ -3,7 +3,36 @@
 {% block title %}Дерево подразделений{% endblock %}
 
 {% block content %}
-{%for employee in all_employees%}
-    {{employee}}<br>
+{%for subdivision, levels in dict_tree_employees.items%}
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sub_{{subdivision.id}}" aria-expanded="false" aria-controls="sub_{{subdivision.id}}">
+            {{subdivision}}
+        </button>
+    </p>
+    <div class="collapse" id="sub_{{subdivision.id}}">
+      <div class="card card-body">
+        {%for level, employees in levels.items%}
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#level_{{level.id}}" aria-expanded="false" aria-controls="level_{{level.id}}">
+                    {{level}} Кол-во сотрудников: {{employees.count}}
+                </button>
+            </p>
+            <div class="collapse" id="level_{{level.id}}">
+                <div class="card card-body">
+                    {%for employee in employees%}
+                            Пользователь: {{employee.user}}
+                            ФИО: {{employee}}
+                            Должность: {{employee.position_at_work}}
+                            Дата приёма на работу: {{employee.employment_date}}
+                            Зарплата: {{employee.salary}}руб.
+                            Подразделение: {{employee.subdivision.name}}
+                            Уровень в подразделении: {{employee.level_in_subdivision.number}}<br/>
+                    {%endfor%}
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+
 {% endfor %}
 {% endblock %}
