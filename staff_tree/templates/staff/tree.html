@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Дерево подразделений{% endblock %}
+
+{% block content %}
+{%for employee in all_employees%}
+    {{employee}}<br>
+{% endfor %}
+{% endblock %}
