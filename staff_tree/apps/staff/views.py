@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -23,5 +25,8 @@ def tree(request):
             )
 
         dict_tree_employees.update({subdivision: dict_levels_and_employees})
-
-    return render(request, 'staff/tree.html', {'dict_tree_employees': dict_tree_employees})
+    start = datetime.now()
+    rendered_http_response = render(request, 'staff/tree.html', {'dict_tree_employees': dict_tree_employees})
+    ends = datetime.now()
+    print(f'Time rendering html: {format(ends - start)}')
+    return rendered_http_response

@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 from django.contrib.auth.models import User
 from subdivisions.models import PositionAtWork, Subdivision, Level
@@ -15,11 +16,14 @@ class Generator:
 
     @staticmethod
     def create_users(count_users_in_db):
+        start = datetime.now()
         generator_users = GeneratorUsers(count_models_in_db=count_users_in_db)
         generated_users = generator_users.generate()
         User.objects.bulk_create(generated_users)
         users = User.objects.filter(employee=None).filter(is_superuser=False)
         Generator.create_employee(users)
+        ends = datetime.now()
+        print(f'Time generation: {format(ends - start)}')
 
     @staticmethod
     def create_employee(users):
@@ -30,11 +34,13 @@ class Generator:
         position_at_work = PositionAtWork.objects.order_by('?')[0]
         subdivision = Subdivision.objects.order_by('?')[0]
         level_in_subdivision = Level.objects.order_by('?')[0]
+        count_new_users = random.randint(1000, 2000)
         for index, user in enumerate(users):
             # full_name = Generator.generate_russian_name()
             # TODO: подумать над этим, не очень хорошая
             #  библиотека для реализации случайных данных
-            if index % 1000 == 0:
+            if index % count_new_users == 0:
+                count_new_users = random.randint(1000, 2000)
                 position_at_work = PositionAtWork.objects.order_by('?')[0]
                 subdivision = Subdivision.objects.order_by('?')[0]
                 level_in_subdivision = Level.objects.order_by('?')[0]
