@@ -4,7 +4,6 @@ from django.db import models
 from subdivisions.models import PositionAtWork, Subdivision, Level
 
 
-
 class Employee(models.Model):
 
     user = models.OneToOneField(
@@ -62,4 +61,3 @@ class Employee(models.Model):
     class Meta:
         verbose_name = 'Работник'
         verbose_name_plural = 'Работники'
-

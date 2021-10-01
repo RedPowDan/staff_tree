@@ -41,4 +41,3 @@ class Subdivision(models.Model):
     class Meta:
         verbose_name = 'Подразделение'
         verbose_name_plural = 'Подразделения'
-
