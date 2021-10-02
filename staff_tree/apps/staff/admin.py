@@ -2,5 +2,9 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.register(models.Employee)
 
+class EmployeeTable(admin.ModelAdmin):
+    readonly_fields = ("user",)
+
+
+admin.site.register(models.Employee, EmployeeTable)

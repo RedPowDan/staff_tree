@@ -20,13 +20,9 @@
             <div class="collapse" id="level_{{level.id}}">
                 <div class="card card-body">
                     {%for employee in employees%}
-                            Пользователь: {{employee.user}}
                             ФИО: {{employee}}
-                            Должность: {{employee.position_at_work}}
-                            Дата приёма на работу: {{employee.employment_date}}
-                            Зарплата: {{employee.salary}}руб.
-                            Подразделение: {{employee.subdivision.name}}
-                            Уровень в подразделении: {{employee.level_in_subdivision.number}}<br/>
+                            <a href="{% url 'admin:staff_employee_change' employee.id%}"> Перейти к сотруднику</a>
+                    <br/>
                     {%endfor%}
                 </div>
             </div>

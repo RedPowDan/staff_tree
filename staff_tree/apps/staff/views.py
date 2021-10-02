@@ -21,7 +21,7 @@ def tree(request):
         dict_levels_and_employees = {}
         for level in all_levels:
             dict_levels_and_employees.update(
-                {level: employees_in_subdivision.filter(level_in_subdivision=level).all()}
+                {level: employees_in_subdivision.filter(level_in_subdivision=level)}
             )
 
         dict_tree_employees.update({subdivision: dict_levels_and_employees})
