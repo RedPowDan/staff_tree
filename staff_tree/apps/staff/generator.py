@@ -36,9 +36,6 @@ class Generator:
         level_in_subdivision = Level.objects.order_by('?')[0]
         count_new_users = random.randint(1000, 2000)
         for index, user in enumerate(users):
-            # full_name = Generator.generate_russian_name()
-            # TODO: подумать над этим, не очень хорошая
-            #  библиотека для реализации случайных данных
             if index % count_new_users == 0:
                 count_new_users = random.randint(1000, 2000)
                 position_at_work = PositionAtWork.objects.order_by('?')[0]
