@@ -8,7 +8,6 @@ from staff.models import Employee
 from staff_tree.generate_data.generators import (GeneratorPositionAtWork,
                                                  GeneratorSubdivision,
                                                  GeneratorLevels,
-                                                 GeneratorRussianName,
                                                  GeneratorUsers)
 
 
