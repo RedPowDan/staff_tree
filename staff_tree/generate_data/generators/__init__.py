@@ -1,6 +1,5 @@
 from .generator_levels import GeneratorLevels
 from .generator_position_at_work import GeneratorPositionAtWork
-from .generator_russian_name import GeneratorRussianName
 from .generator_subdivision import GeneratorSubdivision
 from .base_generator import BaseGenerator
 from .generator_users import GeneratorUsers

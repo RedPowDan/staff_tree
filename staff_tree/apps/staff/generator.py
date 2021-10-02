@@ -88,7 +88,3 @@ class Generator:
         level_models = generator_levels.generate()
         if len(level_models) != 0:
             Level.objects.bulk_create(level_models)
-
-    @staticmethod
-    def generate_russian_name():
-        return GeneratorRussianName().generate()
