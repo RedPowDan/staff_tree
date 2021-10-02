@@ -16,6 +16,6 @@ generators.
 задания я считаю это нормальный результат. Кончено если это рассматривать в качестве 
 прода, то тут плохо реализованно.
 #### Мои контакты
-telegram: `@RedPowDan` : <https://t.me/RedPowDan>
-mail: 11051969dahul@mail.ru
+- telegram: `@RedPowDan` : <https://t.me/RedPowDan>
+- mail: 11051969dahul@mail.ru
 
