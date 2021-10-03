@@ -1,32 +1,18 @@
 from datetime import datetime
 
-from django.contrib.auth.models import User
 from django.shortcuts import render
 
-from staff_tree.apps.staff.generator import Generator
-from subdivisions.models import Subdivision, Level
+from .generator import Generator
+from subdivisions.subdivision_services import get_tree_all_subdivisions
 
 
 def tree(request):
-    count_users_in_db = User.objects.count()
-    Generator.create_users(count_users_in_db=count_users_in_db)
+    Generator.create_random_users()
 
-    all_levels = Level.objects.all()
+    dict_tree_subdivisions = get_tree_all_subdivisions()
 
-    dict_tree_employees = {}
-    all_subdivisions = Subdivision.objects.all()
-    for subdivision in all_subdivisions:
-        employees_in_subdivision = subdivision.employee_set.all()
-
-        dict_levels_and_employees = {}
-        for level in all_levels:
-            dict_levels_and_employees.update(
-                {level: employees_in_subdivision.filter(level_in_subdivision=level)}
-            )
-
-        dict_tree_employees.update({subdivision: dict_levels_and_employees})
     start = datetime.now()
-    rendered_http_response = render(request, 'staff/tree.html', {'dict_tree_employees': dict_tree_employees})
+    rendered_http_response = render(request, 'staff/tree.html', {'dict_tree_subdivisions': dict_tree_subdivisions})
     ends = datetime.now()
     print(f'Time rendering html: {format(ends - start)}')
     return rendered_http_response

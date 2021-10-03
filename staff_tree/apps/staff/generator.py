@@ -14,18 +14,23 @@ from staff_tree.generate_data.generators import (GeneratorPositionAtWork,
 class Generator:
 
     @staticmethod
-    def create_users(count_users_in_db):
+    def create_random_users():
+        """Генерирует случайно сгенерированных пользователей"""
         start = datetime.now()
+
+        count_users_in_db = User.objects.count()
         generator_users = GeneratorUsers(count_models_in_db=count_users_in_db)
         generated_users = generator_users.generate()
         User.objects.bulk_create(generated_users)
         users = User.objects.filter(employee=None).filter(is_superuser=False)
         Generator.create_employee(users)
+
         ends = datetime.now()
         print(f'Time generation: {format(ends - start)}')
 
     @staticmethod
     def create_employee(users):
+        """Создает случайного сотрудника по users"""
         employees = []
 
         Generator.create_dependencies_employee()
@@ -56,6 +61,7 @@ class Generator:
 
     @staticmethod
     def create_dependencies_employee():
+        """Создает все зависимости для сотрудника"""
         count_position_at_work_in_db = PositionAtWork.objects.count()
         count_subdivision_in_db = Subdivision.objects.count()
         count_level_in_db = Level.objects.count()
@@ -66,6 +72,7 @@ class Generator:
 
     @staticmethod
     def create_positions_at_work(count_positions_at_work_in_db):
+        """Создает должности для сотрудника"""
         generator_positions = GeneratorPositionAtWork(count_models_in_db=count_positions_at_work_in_db)
         generated_positions_at_work = generator_positions.generate()
         if len(generated_positions_at_work) != 0:
@@ -73,6 +80,7 @@ class Generator:
 
     @staticmethod
     def create_subdivisions(count_subdivisions_in_db):
+        """Создает подразделения для сотрудников"""
         generator_subdivisions = GeneratorSubdivision(count_models_in_db=count_subdivisions_in_db)
         subdivision_models = generator_subdivisions.generate()
         if len(subdivision_models) != 0:
@@ -80,6 +88,7 @@ class Generator:
 
     @staticmethod
     def create_levels(count_level_in_db):
+        """Создает уровни для сотридников"""
         generator_levels = GeneratorLevels(count_models_in_db=count_level_in_db)
         level_models = generator_levels.generate()
         if len(level_models) != 0:

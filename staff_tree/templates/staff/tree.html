@@ -3,7 +3,7 @@
 {% block title %}Дерево подразделений{% endblock %}
 
 {% block content %}
-{%for subdivision, levels in dict_tree_employees.items%}
+{%for subdivision, levels in dict_tree_subdivisions.items%}
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sub_{{subdivision.id}}" aria-expanded="false" aria-controls="sub_{{subdivision.id}}">
             {{subdivision}}
