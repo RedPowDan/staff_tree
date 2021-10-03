@@ -7,6 +7,7 @@ import string
 
 
 class GeneratorUsers(BaseGenerator):
+    """Генертор пользователей по модели User"""
     MAX_COUNT_IN_DATABASE = 50000
 
     def __init__(self, count_models_in_db):

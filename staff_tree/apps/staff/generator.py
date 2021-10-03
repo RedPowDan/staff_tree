@@ -15,7 +15,7 @@ class Generator:
 
     @staticmethod
     def create_random_users():
-        """Генерирует случайно сгенерированных пользователей"""
+        """Генерирует случайно сгенерированных пользователей в БД"""
         start = datetime.now()
 
         count_users_in_db = User.objects.count()
@@ -30,7 +30,7 @@ class Generator:
 
     @staticmethod
     def create_employee(users):
-        """Создает случайного сотрудника по users"""
+        """Создает случайного сотрудника по users в БД"""
         employees = []
 
         Generator.create_dependencies_employee()
@@ -61,7 +61,7 @@ class Generator:
 
     @staticmethod
     def create_dependencies_employee():
-        """Создает все зависимости для сотрудника"""
+        """Создает все зависимости для сотрудника в БД"""
         count_position_at_work_in_db = PositionAtWork.objects.count()
         count_subdivision_in_db = Subdivision.objects.count()
         count_level_in_db = Level.objects.count()
@@ -72,7 +72,7 @@ class Generator:
 
     @staticmethod
     def create_positions_at_work(count_positions_at_work_in_db):
-        """Создает должности для сотрудника"""
+        """Создает должности для сотрудника в БД"""
         generator_positions = GeneratorPositionAtWork(count_models_in_db=count_positions_at_work_in_db)
         generated_positions_at_work = generator_positions.generate()
         if len(generated_positions_at_work) != 0:
@@ -80,7 +80,7 @@ class Generator:
 
     @staticmethod
     def create_subdivisions(count_subdivisions_in_db):
-        """Создает подразделения для сотрудников"""
+        """Создает подразделения для сотрудников в БД"""
         generator_subdivisions = GeneratorSubdivision(count_models_in_db=count_subdivisions_in_db)
         subdivision_models = generator_subdivisions.generate()
         if len(subdivision_models) != 0:
@@ -88,7 +88,7 @@ class Generator:
 
     @staticmethod
     def create_levels(count_level_in_db):
-        """Создает уровни для сотридников"""
+        """Создает уровни для сотридников в БД"""
         generator_levels = GeneratorLevels(count_models_in_db=count_level_in_db)
         level_models = generator_levels.generate()
         if len(level_models) != 0:

@@ -1,12 +1,9 @@
-import random
-
-from django.db import transaction
-
 from subdivisions.models import PositionAtWork
 from staff_tree.generate_data.generators.base_generator import BaseGenerator
 
 
 class GeneratorPositionAtWork(BaseGenerator):
+    """Генератор должности по модели PositonAtWork"""
     MAX_COUNT_IN_DATABASE = 5
 
     def __init__(self, count_models_in_db):

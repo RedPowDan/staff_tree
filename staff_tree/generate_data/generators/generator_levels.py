@@ -4,6 +4,7 @@ from subdivisions.models import Level
 
 
 class GeneratorLevels(BaseGenerator):
+    """Генератор уровней по модели Level для пользователей"""
     MAX_COUNT_IN_DATABASE = 5
 
     def __init__(self, count_models_in_db):

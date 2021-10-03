@@ -4,6 +4,7 @@ from subdivisions.models import Subdivision
 
 
 class GeneratorSubdivision(BaseGenerator):
+    """Генератор подразделения по модели Subdivision"""
     MAX_COUNT_IN_DATABASE = 25
 
     def __init__(self, count_models_in_db):
